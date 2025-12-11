@@ -1,0 +1,113 @@
+Traceback (most recent call last):
+  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/nbclient/client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.local/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python/3.12.1/lib/python3.12/asyncio/base_events.py", line 684, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/nbclient/client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# scripts/train_model.py
+
+import os
+import joblib
+from tslearn.datasets import UCR_UEA_datasets
+from sklearn.preprocessing import StandardScaler, LabelEncoder
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score, classification_report
+
+# ------------------------------
+# 1. Setup folder
+# ------------------------------
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_DIR = os.path.join(BASE_DIR, "..", "models")
+os.makedirs(MODEL_DIR, exist_ok=True)
+
+# ------------------------------
+# 2. Load dataset Epilepsy dari tslearn
+# ------------------------------
+dataset = UCR_UEA_datasets()
+X_train, y_train, X_test, y_test = dataset.load_dataset("Epilepsy")
+
+print("Shape X_train:", X_train.shape)
+print("Shape X_test :", X_test.shape)
+
+# ------------------------------
+# 3. Flatten time-series menjadi 1D per sampel
+# Bentuk 3D -> 2D (samples, timesteps*channels)
+# ------------------------------
+X_train_flat = X_train.reshape(X_train.shape[0], -1)
+X_test_flat  = X_test.reshape(X_test.shape[0], -1)
+print("Shape setelah flatten:", X_train_flat.shape, X_test_flat.shape)
+
+# ------------------------------
+# 4. Label Encoding
+# ------------------------------
+label_enc = LabelEncoder()
+y_train_enc = label_enc.fit_transform(y_train)
+y_test_enc  = label_enc.transform(y_test)
+
+# Simpan label encoder
+encoder_path = os.path.join(MODEL_DIR, "label_encoder.pkl")
+joblib.dump(label_enc, encoder_path)
+print("Label encoder disimpan ->", encoder_path)
+
+# ------------------------------
+# 5. Normalisasi fitur
+# ------------------------------
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train_flat)
+X_test_scaled  = scaler.transform(X_test_flat)
+
+# Simpan scaler
+scaler_path = os.path.join(MODEL_DIR, "scaler.pkl")
+joblib.dump(scaler, scaler_path)
+print("Scaler disimpan ->", scaler_path)
+
+# ------------------------------
+# 6. Training SVM
+# ------------------------------
+svm_clf = SVC(kernel="rbf", C=1.0, gamma="scale", probability=True)
+svm_clf.fit(X_train_scaled, y_train_enc)
+
+# Simpan model
+model_path = os.path.join(MODEL_DIR, "svm_model.pkl")
+joblib.dump(svm_clf, model_path)
+print("Model SVM disimpan ->", model_path)
+
+# ------------------------------
+# 7. Evaluasi
+# ------------------------------
+y_pred = svm_clf.predict(X_test_scaled)
+acc = accuracy_score(y_test_enc, y_pred)
+print("\n===== RESULT =====")
+print("Accuracy:", acc)
+print("\nClassification Report:\n", classification_report(y_test_enc, y_pred))
+
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mNameError[39m                                 Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[16][39m[32m, line 13[39m
+[32m      8[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01msklearn[39;00m[34;01m.[39;00m[34;01mmetrics[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m accuracy_score, classification_report
+[32m     10[39m [38;5;66;03m# ------------------------------[39;00m
+[32m     11[39m [38;5;66;03m# 1. Setup folder[39;00m
+[32m     12[39m [38;5;66;03m# ------------------------------[39;00m
+[32m---> [39m[32m13[39m BASE_DIR = os.path.dirname(os.path.abspath([34;43m__file__[39;49m))
+[32m     14[39m MODEL_DIR = os.path.join(BASE_DIR, [33m"[39m[33m..[39m[33m"[39m, [33m"[39m[33mmodels[39m[33m"[39m)
+[32m     15[39m os.makedirs(MODEL_DIR, exist_ok=[38;5;28;01mTrue[39;00m)
+
+[31mNameError[39m: name '__file__' is not defined
+
