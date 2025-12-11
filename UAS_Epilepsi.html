@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Klasifikasi Aktivitas Seizure Mimicking Menggunakan Machine Learning pada Dataset Epilepsy Berbasis Tri-Axial Accelerometer” &#8212; My sample book</title>
+    <title>Klasifikasi Aktivitas Seizure Mimicking Menggunakan Machine Learning pada Dataset Epilepsy Berbasis Tri-Axial Accelerometer &#8212; My sample book</title>
   
   
   
@@ -187,7 +187,7 @@ const thebe_selector_output = ".output, .cell_output"
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="voice_predict.html">VOICE PREDICT UNTUK DATASET BUKA DAN TUTUP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Time_Wrapping.html">Dynamic Time Wrapping</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Klasifikasi Aktivitas Seizure Mimicking Menggunakan Machine Learning pada Dataset Epilepsy Berbasis Tri-Axial Accelerometer”</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Klasifikasi Aktivitas Seizure Mimicking Menggunakan Machine Learning pada Dataset Epilepsy Berbasis Tri-Axial Accelerometer</a></li>
 </ul>
 
     </div>
@@ -373,7 +373,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Klasifikasi Aktivitas Seizure Mimicking Menggunakan Machine Learning pada Dataset Epilepsy Berbasis Tri-Axial Accelerometer”</h1>
+    <h1>Klasifikasi Aktivitas Seizure Mimicking Menggunakan Machine Learning pada Dataset Epilepsy Berbasis Tri-Axial Accelerometer</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -430,7 +430,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="klasifikasi-aktivitas-seizure-mimicking-menggunakan-machine-learning-pada-dataset-epilepsy-berbasis-tri-axial-accelerometer">
-<h1>Klasifikasi Aktivitas Seizure Mimicking Menggunakan Machine Learning pada Dataset Epilepsy Berbasis Tri-Axial Accelerometer”<a class="headerlink" href="#klasifikasi-aktivitas-seizure-mimicking-menggunakan-machine-learning-pada-dataset-epilepsy-berbasis-tri-axial-accelerometer" title="Permalink to this heading">#</a></h1>
+<h1>Klasifikasi Aktivitas Seizure Mimicking Menggunakan Machine Learning pada Dataset Epilepsy Berbasis Tri-Axial Accelerometer<a class="headerlink" href="#klasifikasi-aktivitas-seizure-mimicking-menggunakan-machine-learning-pada-dataset-epilepsy-berbasis-tri-axial-accelerometer" title="Permalink to this heading">#</a></h1>
 <section id="business-understanding">
 <h2>Business Understanding<a class="headerlink" href="#business-understanding" title="Permalink to this heading">#</a></h2>
 <section id="pendahuluan">
@@ -465,12 +465,8 @@ Requirement already satisfied: numpy&gt;=1.24.3 in /home/codespace/.local/lib/py
 Requirement already satisfied: scipy&gt;=1.10.1 in /home/codespace/.local/lib/python3.12/site-packages (from tslearn) (1.16.3)
 Requirement already satisfied: numba&gt;=0.58.1 in /usr/local/python/3.12.1/lib/python3.12/site-packages (from tslearn) (0.62.1)
 Requirement already satisfied: joblib&gt;=1.2 in /home/codespace/.local/lib/python3.12/site-packages (from tslearn) (1.5.2)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: llvmlite&lt;0.46,&gt;=0.45.0dev0 in /usr/local/python/3.12.1/lib/python3.12/site-packages (from numba&gt;=0.58.1-&gt;tslearn) (0.45.1)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: threadpoolctl&gt;=3.1.0 in /home/codespace/.local/lib/python3.12/site-packages (from scikit-learn&gt;=1.4-&gt;tslearn) (3.6.0)
+Requirement already satisfied: llvmlite&lt;0.46,&gt;=0.45.0dev0 in /usr/local/python/3.12.1/lib/python3.12/site-packages (from numba&gt;=0.58.1-&gt;tslearn) (0.45.1)
+Requirement already satisfied: threadpoolctl&gt;=3.1.0 in /home/codespace/.local/lib/python3.12/site-packages (from scikit-learn&gt;=1.4-&gt;tslearn) (3.6.0)
 </pre></div>
 </div>
 </div>
@@ -999,18 +995,18 @@ weighted avg       0.76      0.77      0.76       138
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Gradient Boosting ===
-Accuracy : 0.7536231884057971
+Accuracy : 0.7463768115942029
 Classification Report:
               precision    recall  f1-score   support
 
            0       0.68      0.62      0.65        34
-           1       0.84      0.73      0.78        37
-           2       0.73      0.80      0.76        30
-           3       0.76      0.86      0.81        37
+           1       0.88      0.76      0.81        37
+           2       0.71      0.73      0.72        30
+           3       0.73      0.86      0.79        37
 
     accuracy                           0.75       138
-   macro avg       0.75      0.75      0.75       138
-weighted avg       0.76      0.75      0.75       138
+   macro avg       0.75      0.74      0.74       138
+weighted avg       0.75      0.75      0.75       138
 
 
 === Logistic Regression ===
@@ -1029,18 +1025,18 @@ weighted avg       0.67      0.65      0.62       138
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== MLP Neural Network ===
-Accuracy : 0.7028985507246377
+Accuracy : 0.6521739130434783
 Classification Report:
               precision    recall  f1-score   support
 
-           0       0.70      0.47      0.56        34
-           1       0.76      0.51      0.61        37
-           2       0.71      1.00      0.83        30
-           3       0.67      0.86      0.75        37
+           0       0.56      0.29      0.38        34
+           1       0.74      0.54      0.62        37
+           2       0.68      0.93      0.79        30
+           3       0.62      0.86      0.72        37
 
-    accuracy                           0.70       138
-   macro avg       0.71      0.71      0.69       138
-weighted avg       0.71      0.70      0.69       138
+    accuracy                           0.65       138
+   macro avg       0.65      0.66      0.63       138
+weighted avg       0.65      0.65      0.63       138
 
 
 
@@ -1049,9 +1045,9 @@ weighted avg       0.71      0.70      0.69       138
 0                  KNN  0.521739
 1            SVM (RBF)  0.840580
 2        Random Forest  0.768116
-3    Gradient Boosting  0.753623
+3    Gradient Boosting  0.746377
 4  Logistic Regression  0.652174
-5   MLP Neural Network  0.702899
+5   MLP Neural Network  0.652174
 </pre></div>
 </div>
 </div>
